@@ -28,7 +28,7 @@ Route::get('/tasks', function () {
     ]);
 })->name('tasks.index');
 
-Route::view('/tasks/create', 'create');
+Route::view('/tasks/create', 'create')->name('tasks.create');
 
 Route::get('/tasks/{task}/edit', function(Task $task) {
     return view('edit', [
@@ -61,6 +61,12 @@ Route::delete('/tasks/{task}', function(Task $task) {
 
     return redirect()->route('tasks.index')->with('success', 'Task deleted successfully');
 })->name('tasks.destroy');
+
+Route::put('tasks/{task}/toggle-complete', function(Task $task) {
+    $task->toggleComplete();
+
+    return redirect()->back()->with('success', 'Task status updated');
+})->name('tasks.toggle-complete');
 
 Route::fallback(function() {
     return 'The URL you wanted doesn\'t exist';
