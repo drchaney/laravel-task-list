@@ -3,6 +3,11 @@
 @section('title', 'List of Tasks')
 
 @section('content')
+
+<div>
+    <a href="{{ route('tasks.create') }}">New Task</a>
+</div>
+
 @isset($name)
     <p>My name is: {{ $name }}</p>
 @endisset
