@@ -13,6 +13,12 @@
             href="{{ route('tasks.show', ['task' => $task]) }}">{{ $task->title }}</a>
     </div>
 @empty
-    <div>No IDs/div>
+    <div>There are no tasks!</div>
 @endforelse
-@endsection
+
+@if($task->count())
+    <div>
+        {{ $tasks->links() }}
+    </div>
+    @endsection
+@endif
